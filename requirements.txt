@@ -1,0 +1,10 @@
+# Pinned direct dependencies (§3.1, §8.5 reproducibility).
+# Python 3.12. Install:  python -m venv .venv && pip install -r requirements.txt
+yfinance==1.5.1
+pandas==3.0.3
+numpy==2.5.1
+matplotlib==3.11.1
+pyarrow==25.0.0          # parquet cache for data/raw
+psycopg2-binary==2.9.12  # read-only Supabase core.* (market-state source; --refresh only)
+python-dotenv==1.2.2     # loads DATABASE_URL from .env (--refresh only)
+pytest==9.1.1

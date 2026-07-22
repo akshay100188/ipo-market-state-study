@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Data — the market-state raw pulls ARE committed on purpose: they are public
+# market data (index/VIX closes) and the reproducibility anchor so a reader can
+# run `make all` without DB credentials (§8.5). Only large per-name price dumps
+# (Phase 2, data/prices/) stay out of git.
+/data/prices/
+
+# Generated figures are reproducible from the pipeline; keep the dir, ignore output.
+/figures/*.png
+!/figures/.gitkeep
+
+# local tooling config
+.claude/
+*.log

@@ -1,0 +1,50 @@
+{
+  "in_index": {
+    "cache_file": "in_index__20260722T172628Z.parquet",
+    "end": "2026-07-01",
+    "retrieved_utc": "20260722T172628Z",
+    "rows": 7822,
+    "source": "core.curveiq_nifty50 (niftyindices.com, NSE official, via am-ai-engine)",
+    "start": "1995-01-01"
+  },
+  "in_index_alt": {
+    "cache_file": "in_index_alt__20260722T172628Z.parquet",
+    "end": "2026-07-22",
+    "retrieved_utc": "20260722T172628Z",
+    "rows": 5548,
+    "source": "Yahoo Finance ^BSESN (BSE Sensex)",
+    "start": "2004-01-02"
+  },
+  "in_vix": {
+    "cache_file": "in_vix__20260722T172630Z.parquet",
+    "end": "2026-07-22",
+    "retrieved_utc": "20260722T172630Z",
+    "rows": 4520,
+    "source": "core.macro_daily.india_vix (via am-ai-engine)",
+    "start": "2008-03-03"
+  },
+  "us_index": {
+    "cache_file": "us_index__20260722T172623Z.parquet",
+    "end": "2026-07-21",
+    "retrieved_utc": "20260722T172623Z",
+    "rows": 7939,
+    "source": "core.curveiq_sp500 (FRED SP500 / Yahoo ^GSPC, via am-ai-engine)",
+    "start": "1995-01-03"
+  },
+  "us_index_alt": {
+    "cache_file": "us_index_alt__20260722T172625Z.parquet",
+    "end": "2026-07-22",
+    "retrieved_utc": "20260722T172625Z",
+    "rows": 5673,
+    "source": "Yahoo Finance ^IXIC (Nasdaq Composite)",
+    "start": "2004-01-02"
+  },
+  "us_vix": {
+    "cache_file": "us_vix__20260722T172626Z.parquet",
+    "end": "2026-07-22",
+    "retrieved_utc": "20260722T172626Z",
+    "rows": 5674,
+    "source": "Yahoo Finance ^VIX (CBOE VIX)",
+    "start": "2004-01-02"
+  }
+}
