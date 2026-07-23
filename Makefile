@@ -28,6 +28,19 @@ fetch:
 refresh:
 	$(PY) -m src.fetch_market --refresh
 
+# --- Data acquisition (Phase 2) ------------------------------------------
+activity:
+	$(PY) -m src.fetch_activity     # US Ritter aggregate -> data/ipo_activity.csv
+
+seed:
+	$(PY) -m src.build_seed         # curated anchor core -> data/ipo_seed.csv
+
+prices:
+	$(PY) -m src.fetch_prices       # post-listing returns -> data/derived/
+
+# Full data build: market + activity + seed + gate + post-listing series.
+data: fetch activity seed verify prices
+
 test:
 	$(PY) -m pytest -q
 

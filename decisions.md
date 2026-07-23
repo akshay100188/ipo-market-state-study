@@ -61,6 +61,24 @@ coverage, but unverifiable and fabrication-prone. Cut the claim.
 India's first-day-return evidence (with n stated). The US/India asymmetry is
 disclosed in the limitations section.
 
+**Phase-2 finding (2026-07-23) — the India count claim is DROPPED, not just
+caveated.** Attempting to cross-check India annual mainboard IPO counts surfaced
+a genuine, unresolved disagreement: PRIME Database reports **40** mainboard IPOs
+for CY2022 while EY reports **138** — a ~3x gap, driven by definition
+(mainboard-only vs mainboard + the hundreds of tiny SME IPOs, plus calendar vs
+fiscal year). *Funds raised* roughly reconcile (PRIME ~Rs 59,412 cr ~ EY
+~US$7.5 bn for 2022), but the count does not. Per the brief ("where two sources
+disagree, reconcile with a third or drop the year and say so") and "bias toward
+cut the claim," **no precise India IPO-count series is published.** India's SC-1
+evidence is therefore: (a) the *direction* of activity (boom 2021 -> collapse
+2022), stated qualitatively, and (b) the curated set's first-day returns with n
+stated. Compounding this, the primary India IPO trackers (chittorgarh,
+business-standard AMP) sit behind Cloudflare and 403 automated fetches, so even
+the reported figures cannot be programmatically re-verified for a reader — an
+additional reason to keep them out of published figures. This is the
+verification discipline working as intended, and is reported as a headline
+limitation — it is itself evidence for the artifact's thesis.
+
 ## ADR-004 — Verification gate as a blocking build step
 **Status:** ACCEPTED (built, Phase 1).
 **What:** `src/verify.py` validates `data/ipo_seed.csv` and emits the

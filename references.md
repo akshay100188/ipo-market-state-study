@@ -34,8 +34,16 @@ substitution window is disclosed at every point of use.
 |---|---|---|---|
 | US annual IPO counts + mean first-day returns, 2005–2025 | Jay Ritter (Univ. of Florida), **IPOALL.xlsx** — monthly IPO counts + average first-day returns, 1960–2025 (net-count definition). Annual figures are aggregated from his monthly rows (sum of net counts; net-count-weighted mean first-day return). Validated against his published annual figures (1999→476/71.0%, 2020→165/41.6%, 2021→309/32.0%). | https://site.warrington.ufl.edu/ritter/files/IPOALL.xlsx | 2026-07-23 |
 
-_India annual activity: pending ADR-003 decision + cross-checked acquisition
-(≥2 sources per year, or year dropped)._
+**India annual activity — count series deliberately not published (ADR-003).**
+Cross-checking surfaced a ~3x disagreement between reputable compilers on India
+mainboard IPO *counts* (PRIME Database 40 vs EY 138 for CY2022) driven by
+mainboard-vs-SME definition; *funds raised* roughly reconcile but counts do not,
+so the count claim is dropped per the brief's "reconcile or drop and say so."
+India's aggregate evidence is limited to activity *direction* (2021 boom → 2022
+collapse) and the curated set's first-day returns (n stated). Sources consulted:
+[EY India IPO Trends](https://www.ey.com/en_in/services/ipo/india-ipo-trends-report),
+PRIME Database (reported via Business Standard). Both primary trackers 403
+automated fetches (Cloudflare), a further reason for exclusion.
 
 ## Curated IPO case dataset (§3.3)
 
