@@ -73,4 +73,4 @@ recorded in `data/raw/manifest.json` and surfaced in `references.md`.
 - [x] **Phase 2** — US Ritter aggregate, 9-name verified curated core, post-listing series (India count series dropped by design — sources disagree 3x)
 - [x] **Phase 3** — regime labels, aggregate cut (SC-1), bull-failures (SC-2), ±20% sensitivity, 4 light-theme figures
 - [x] **Phase 4** — 2,300-word report ([`report/`](report/ipo_market_state_study.md)); fabrication + advisory lints pass; `make all` reproduces from cache
-- [ ] **Phase 5** — publication package
+- [x] **Phase 5** — LinkedIn drafts ([`social/`](social/linkedin_posts.md)), complete ADR log ([`decisions.md`](decisions.md)); **awaiting PO review before anything is published**
