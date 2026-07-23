@@ -31,12 +31,15 @@ refresh:
 test:
 	$(PY) -m pytest -q
 
-# --- Phases 1/3/4 targets are wired as they are built --------------------
+# --- Verification machinery (Phase 1) ------------------------------------
+# verify: fail if any published row is unverified (§3.3, §8.1).
 verify:
-	@echo "verify.py — Phase 1 (not yet built)"
+	$(PY) -m src.verify
 
+# lint: orphan-number lint (§8.2) + advisory-language lint (§8.3/§8.4).
 lint:
-	@echo "lint_fabrication.py + advisory lint — Phase 1 (not yet built)"
+	$(PY) -m src.lint_fabrication
+	$(PY) -m src.lint_language
 
 analysis:
 	@echo "analysis.py — Phase 3 (not yet built)"

@@ -1,0 +1,4 @@
+ticker,name,market,ipo_date,offer_price,currency,day1_open,day1_close,day1_return_pct,source_url,source_type,retrieval_date,verify_status,notes
+FB,Meta (Facebook),US,2012-05-18,38,USD,42.05,38.23,0.61,https://www.sec.gov/x,prospectus,2026-07-22,VERIFIED,anchor case
+PAYTM,One97 Paytm,IN,2021-11-18,2150,INR,1955,1564,-27.25,,secondary,2026-07-22,VERIFIED,missing source_url on purpose
+LIC,LIC of India,IN,2022-05-17,949,INR,,,,,,,TO_VERIFY,unresolved on purpose

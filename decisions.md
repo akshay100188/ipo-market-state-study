@@ -48,10 +48,40 @@ to "fragile."
 size stated, **or** restrict India's aggregate claim to counts + funds raised.
 
 ## ADR-004 — Verification gate as a blocking build step
-**Status:** PENDING (Phase 1). `verify.py` to exit non-zero, no override flag.
+**Status:** ACCEPTED (built, Phase 1).
+**What:** `src/verify.py` validates `data/ipo_seed.csv` and emits the
+VERIFIED-only `data/ipo_curated.csv` plus `data/derived/excluded_unverified.csv`.
+Row-status semantics: **VERIFIED** requires full provenance for the three
+load-bearing facts (offer_price, ipo_date, day1_return_pct) — a working
+`source_url`, a `source_type`, an ISO `retrieval_date` — else the build fails;
+**EXCLUDED** requires a stated reason in `notes` (ADR-007); **TO_VERIFY** (or any
+unknown status) fails the gate. Exit non-zero == build fails; **no override flag**
+(§8.1).
+**Why:** A gate is a script that exits non-zero, not a paragraph of good
+intentions. Making a VERIFIED-without-receipts row a hard failure polices the
+exact failure mode (a plausible hallucinated price with no source).
+**Rejected:** (a) treating TO_VERIFY as a silent skip — lets an unfinished study
+look done. (b) an `--allow-unverified` override — defeats the gate's purpose.
+**Tested:** `tests/test_verify.py` (10 cases: broken row fails, clean passes).
 
 ## ADR-005 — Fabrication-lint scope
-**Status:** PENDING (Phase 1). Which numeric tokens are in scope / exempt.
+**Status:** ACCEPTED (built, Phase 1).
+**What:** `src/lint_fabrication.py` scans the report for numeric tokens and
+fails on any that do not trace to a derived CSV value or a `references.md`
+entry, by significant-digit signature (so "48.2%" matches a derived 0.482).
+**In scope:** percentages, currency amounts, decimals with a fractional part,
+and integers >= 100 — how prices, returns and counts actually appear.
+**Exempt:** years / ISO dates (1900–2100), structural refs (§4.2, Figure 3,
+ADR-002, SC-1, Phase 0, H1/H2), and bare integers < 100 that are not a
+percentage or currency (meta-counts like "4–5 pairs", "250–350 words").
+**Why:** The value of the lint is catching an invented price/return, not
+policing "we chose 5 pairs." A conservative exemption list keeps the signal.
+**Residual (named in the report):** a lint proves a number came from the
+dataset, not that the dataset is right about the world; and the signature match
+can coincide. Scope is revisited against the real report at Phase 4.
+**Rejected:** flagging *every* digit — would drown the real signal in §-refs and
+word-count ranges, training the reader to ignore the lint.
+**Tested:** `tests/test_lints.py` (scope, signature match, orphan detection).
 
 ## ADR-006 — Post-listing survivorship handling
 **Status:** PENDING (Phase 2/3).

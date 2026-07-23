@@ -1,0 +1,3 @@
+ticker,name,market,ipo_date,offer_price,currency,day1_open,day1_close,day1_return_pct,source_url,source_type,retrieval_date,verify_status,notes
+FB,Meta (Facebook),US,2012-05-18,38,USD,42.05,38.23,0.61,https://www.sec.gov/x,prospectus,2026-07-22,VERIFIED,anchor case
+SPACEX,SpaceX,US,2026-06-05,,USD,,,,,,,EXCLUDED,recent listing; figures TO_VERIFY; cut per ADR-007

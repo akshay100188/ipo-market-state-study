@@ -31,7 +31,10 @@ src/
   fetch_market.py   §3.1 six index/vol series, DB-primary + yfinance fallback, cached
   regime.py         §2/§4.1 market-state labelling + India realised-vol fallback
   plotting.py       §6 light theme, navy/blue palette
-  # verify.py, lint_fabrication.py, analysis.py — Phases 1 & 3
+  verify.py         §3.3/§8.1 citation gate — fails the build on any unverified row
+  lint_fabrication.py §8.2 orphan-number lint — every number must trace to data
+  lint_language.py  §8.3/§8.4 advisory (fail) + causal (warn) language lint
+  # analysis.py — Phase 3
 data/raw/           timestamped raw pulls + manifest.json (provenance)
 data/derived/       labelled + computed outputs
 tests/              regime logic + anchor-date integration tests
@@ -66,7 +69,7 @@ recorded in `data/raw/manifest.json` and surfaced in `references.md`.
 ## Status
 
 - [x] **Phase 0** — scaffold, market-state layer, regime labeller + tests
-- [ ] **Phase 1** — verification gate + fabrication lint
+- [x] **Phase 1** — verification gate + fabrication/advisory lints (built before the data)
 - [ ] **Phase 2** — data acquisition + verification
 - [ ] **Phase 3** — analysis + figures
 - [ ] **Phase 4** — report
