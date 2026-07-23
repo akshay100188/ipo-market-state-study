@@ -1,0 +1,10 @@
+ticker,name,market,ipo_date,source,ret_1M,excess_1M,ret_3M,excess_3M,ret_6M,excess_6M,ret_12M,excess_12M
+META,Meta Platforms (Facebook),US,2012-05-18,Yahoo Finance META,-17.84,-21.67,-50.17,-59.66,-38.37,-43.37,-31.34,-60.08
+V,Visa Inc.,US,2008-03-19,Yahoo Finance V,22.12,15.05,49.15,45.73,23.13,26.47,-6.74,32.87
+UBER,Uber Technologies,US,2019-05-10,Yahoo Finance UBER,2.5,2.32,-3.66,-4.95,-35.03,-42.37,-21.12,-22.8
+IRCTC,Indian Railway Catering & Tourism Corp,IN,2019-10-14,Yahoo Finance IRCTC.NS,24.67,19.99,33.86,24.85,77.37,98.07,83.86,78.31
+SBICARD,SBI Cards & Payment Services,IN,2020-03-16,Yahoo Finance SBICARD.NS,-21.91,-19.69,-14.04,-21.83,24.97,-1.2,50.0,-12.12
+ZOMATO,Zomato Ltd,IN,2021-07-23,Yahoo Finance ETERNAL.NS (renamed from ZOMATO),0.99,-3.05,9.33,-4.92,-9.8,-20.91,-57.42,-62.87
+NYKAA,FSN E-Commerce Ventures (Nykaa),IN,2021-11-10,Yahoo Finance NYKAA.NS,-4.13,-1.32,-22.41,-20.13,-38.49,-28.63,-48.79,-48.86
+PAYTM,One97 Communications (Paytm),IN,2021-11-18,Yahoo Finance PAYTM.NS,-15.36,-10.98,-46.6,-43.85,-62.31,-53.73,-64.95,-68.01
+LICI,Life Insurance Corp of India,IN,2022-05-17,"core.nse_daily_prices (official NSE, am-ai-engine)",-25.22,-19.28,-20.26,-30.62,-26.44,-39.26,-34.88,-46.7

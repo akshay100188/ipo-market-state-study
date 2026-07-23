@@ -38,6 +38,25 @@ _India annual activity: pending ADR-003 decision + cross-checked acquisition
 (≥2 sources per year, or year dropped)._
 
 ## Curated IPO case dataset (§3.3)
-_To be populated in Phase 2. Each row's `offer_price`, `ipo_date`,
-`day1_return_pct` carries a working `source_url` and `retrieval_date` before it
-enters any published figure._
+
+Anchor core of 9 (ADR-010). Each day-1 close is on the same **unadjusted** basis
+as its offer price; the day-1 return is computed in Python (`src/build_seed.py`),
+never hand-typed. Full provenance is enforced by `verify.py` and lives in
+`data/ipo_seed.csv` (`source_url`, `source_type`, `retrieval_date`, `notes`).
+All retrieved 2026-07-23.
+
+| Name | Offer | Day-1 close | Day-1 | Source |
+|---|---|---|---|---|
+| Meta / Facebook (2012-05-18) | $38.00 | $38.23 | +0.6% | [ABC News](https://abcnews.com/Business/facebook-ipo-nasdaq-fb-stock-closes-ipo-price/story?id=16376373) |
+| Visa (2008-03-19) | $44.00 | $56.50 | +28.4% | [CNBC](https://www.cnbc.com/2008/03/19/visa-shares-soar-in-first-day-of-trading.html) · offer per Visa PR / SEC 424B4 |
+| Uber (2019-05-10) | $45.00 | $41.57 | −7.6% | [CNBC](https://www.cnbc.com/2019/05/10/uber-ipo-stock-starts-trading-on-the-new-york-stock-exchange.html) |
+| IRCTC (2019-10-14) | ₹320 | ₹727.75 | +127.4% | [Business Today](https://www.businesstoday.in/markets/company-stock/story/irctc-share-price-listing-on-nse-bse-irctc-share-closing-234142-2019-10-14) |
+| SBI Cards (2020-03-16) | ₹755 | ₹683.00 | −9.5% | [Business Standard](https://www.business-standard.com/article/news-cm/sbi-cards-ends-with-9-5-discount-on-debut-120031600978_1.html) |
+| Zomato (2021-07-23) | ₹76 | ₹125.30 | +64.9% | [Business Standard](https://www.business-standard.com/amp/article/markets/zomato-lists-53-higher-on-nse-market-cap-crosses-rs-1-trillion-mark-121072300290_1.html) |
+| Nykaa / FSN (2021-11-10) | ₹1125 | ₹2208.00 | +96.3% | [India.com](https://www.india.com/business/nykaa-share-price-ipo-listing-date-bse-nse-link-allotment-details-fsn-e-commerce-ventures-ltd-5089813/) |
+| Paytm / One97 (2021-11-18) | ₹2150 | ₹1564.00 | −27.3% | [Business Standard](https://www.business-standard.com/amp/article/markets/paytm-shares-partly-pare-losses-after-disappointing-initial-performance-121112600995_1.html) |
+| LIC (2022-05-17) | ₹949 | ₹875.25 | −7.8% | [Zee Business](https://www.zeebiz.com/market-news/live-updates-lic-ipo-listing-live-updates-shares-to-make-debut-on-nse-bse-today-all-you-need-to-know-184887) · close per official NSE (`core.nse_daily_prices`) |
+
+Post-listing trajectories (+1M/3M/6M/12M, absolute + excess vs home index) are
+in `data/derived/post_listing_returns.csv`; fetch gaps/survivorship in
+`data/derived/price_fetch_log.csv`.

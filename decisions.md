@@ -44,8 +44,22 @@ anchor and hiding the crisis character of the tape.
 to "fragile."
 
 ## ADR-003 — India aggregate first-day-return approach
-**Status:** PENDING (Phase 2). Compute from the curated India set with sample
-size stated, **or** restrict India's aggregate claim to counts + funds raised.
+**Status:** ACCEPTED (PO decision, Phase 2).
+**What:** Restrict India's *aggregate* (SC-1) claim to **annual IPO counts and
+funds raised**, cross-checked against >=2 independent sources per year (years
+that cannot be reconciled are dropped and said so). India mean first-day returns
+are **not** taken from any aggregate series — they are computed from the curated
+set with the sample size stated prominently wherever they appear.
+**Why:** India has no clean public equivalent of Ritter's mean-first-day-return
+series. Manufacturing one from a compiled source, with no authoritative anchor
+to validate against, is exactly the confident-but-wrong failure mode the
+artifact exists to disprove. Counts + funds raised are verifiable against
+official NSE/BSE/SEBI statistics; returns are not.
+**Rejected:** building an India annual mean-first-day-return series — higher
+coverage, but unverifiable and fabrication-prone. Cut the claim.
+**Consequence:** SC-1's India evidence is activity-only; the curated set carries
+India's first-day-return evidence (with n stated). The US/India asymmetry is
+disclosed in the limitations section.
 
 ## ADR-004 — Verification gate as a blocking build step
 **Status:** ACCEPTED (built, Phase 1).
@@ -84,10 +98,46 @@ word-count ranges, training the reader to ignore the lint.
 **Tested:** `tests/test_lints.py` (scope, signature match, orphan detection).
 
 ## ADR-006 — Post-listing survivorship handling
-**Status:** PENDING (Phase 2/3).
+**Status:** ACCEPTED (built, Phase 2).
+**What:** `src/fetch_prices.py` computes +1M/3M/6M/12M returns (absolute + excess
+vs home index) as ratios on each name's daily series, so splits/bonuses cancel.
+Every missing horizon — a delisted/acquired/renamed/too-young name — is logged
+explicitly to `data/derived/price_fetch_log.csv`, never silently dropped.
+**Why:** A silent fetch failure biases the sample toward survivors. Making each
+gap a logged event keeps survivorship visible and reportable.
+**Notable case:** Zomato delisted as `ZOMATO.NS` and now trades as `ETERNAL.NS`
+(renamed Eternal, 2025) — handled via an explicit `YF_OVERRIDE` map, and it is
+itself a decoupling specimen (+65% day-1, then -57% at 12M). LIC's yfinance feed
+is unreliable, so its series comes from the DB (official NSE).
+**Revisit:** if a name delists mid-window, report the partial trajectory + the
+delisting, don't extrapolate.
 
 ## ADR-007 — Curated names excluded and why
-**Status:** PENDING (Phase 2). SpaceX (Jun 2026) likely lands here.
+**Status:** ACCEPTED (Phase 2).
+**What:** SpaceX (Jun 2026) is **excluded**, per the brief's own warning: a
+fresh, high-profile listing with almost no post-listing history is where a wrong
+number does the most reputational damage. It is not in the seed at all.
+**Also excluded (deliberately not sought):** a full census — see ADR-001.
+**Mechanism:** any future TO_VERIFY name that cannot be driven to VERIFIED is set
+to `EXCLUDED` with a reason in `notes`; `verify.py` enforces the reason.
+
+## ADR-010 — Curated set = rigorous anchor core (~9 names)
+**Status:** ACCEPTED (PO decision, Phase 2).
+**What:** Rather than chase the brief's full ~20-30 names, verify a regime- and
+outcome-spanning anchor core of 9 to VERIFIED with cited sources: Meta/Facebook,
+Visa, Uber (US); IRCTC, SBI Cards, Zomato, Nykaa, Paytm, LIC (India).
+**Why:** Quality over quantity; each name's offer price + day-1 close is
+hand-cited on a consistent unadjusted basis. The core already carries every
+comparison the narrative needs: bull-market pops (IRCTC, Zomato, Nykaa) beside a
+bull-market flop in the *same* regime (Paytm) — SC-2's whole point — plus a
+turbulent pop (Visa) beside a turbulent discount (SBI Cards), and the
+listing-vs-company decoupling anchor (Facebook).
+**Cut the claim:** more names = more per-number citation risk for marginal
+narrative gain. Selection bias (marquee names) is disclosed in limitations.
+**Day-1 basis (critical):** every day-1 close is on the same unadjusted basis as
+its offer price. yfinance's split-adjusted (Visa 14.12, IRCTC 145.55) and
+outright-wrong (LIC 437) day-1 values are NOT used; returns come from cited
+as-traded closes. `src/build_seed.py` computes the return in Python.
 
 ## ADR-008 — Market-state source: Supabase `core.*` primary, yfinance fallback
 **Status:** ACCEPTED. (Developer decision; brief §3.1 assumed yfinance-only.)

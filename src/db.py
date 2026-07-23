@@ -69,3 +69,33 @@ def fetch_macro_column(column: str) -> pd.Series:
         f"WHERE {column} IS NOT NULL ORDER BY date",
         column,
     )
+
+
+def fetch_nse_close(symbol: str, start: str) -> pd.Series:
+    """Daily close for one NSE symbol from core.nse_daily_prices (2022+).
+
+    Official NSE data (via am-ai-engine). Used for post-listing series of
+    India names whose yfinance feed is unreliable (e.g. LIC). Returns an empty
+    series if the symbol/date range is absent.
+    """
+    import psycopg2
+
+    conn = psycopg2.connect(_dsn())
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT date, close FROM core.nse_daily_prices "
+            "WHERE symbol = %s AND date >= %s AND close IS NOT NULL ORDER BY date",
+            (symbol, start),
+        )
+        rows = cur.fetchall()
+        cur.close()
+    finally:
+        conn.close()
+    if not rows:
+        return pd.Series(dtype="float64", name=symbol)
+    return pd.Series(
+        [float(r[1]) for r in rows],
+        index=pd.to_datetime([r[0] for r in rows]),
+        name=symbol,
+    )
