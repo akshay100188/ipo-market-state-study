@@ -29,8 +29,13 @@ substitution window is disclosed at every point of use.
 ---
 
 ## Aggregate IPO-activity layer (§3.2)
-_To be populated in Phase 2. US: Jay Ritter (UF) IPO data — table number +
-retrieval date. India: NSE/BSE/SEBI annual statistics, ≥2 sources per year._
+
+| Claim | Source | URL | Retrieved |
+|---|---|---|---|
+| US annual IPO counts + mean first-day returns, 2005–2025 | Jay Ritter (Univ. of Florida), **IPOALL.xlsx** — monthly IPO counts + average first-day returns, 1960–2025 (net-count definition). Annual figures are aggregated from his monthly rows (sum of net counts; net-count-weighted mean first-day return). Validated against his published annual figures (1999→476/71.0%, 2020→165/41.6%, 2021→309/32.0%). | https://site.warrington.ufl.edu/ritter/files/IPOALL.xlsx | 2026-07-23 |
+
+_India annual activity: pending ADR-003 decision + cross-checked acquisition
+(≥2 sources per year, or year dropped)._
 
 ## Curated IPO case dataset (§3.3)
 _To be populated in Phase 2. Each row's `offer_price`, `ipo_date`,
