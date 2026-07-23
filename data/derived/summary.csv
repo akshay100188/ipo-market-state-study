@@ -1,0 +1,14 @@
+metric,value
+n_curated,9.0
+n_us,3.0
+n_india,6.0
+n_regimes_used,3.0
+n_fragile,4.0
+n_robust,5.0
+n_bull_failures,1.0
+agg_n_years,21.0
+corr_count_index_ret,0.395
+corr_meanret_index_ret,0.02
+corr_count_meanvix,-0.383
+n_bull_curated,3.0
+sensitivity_perturbation_pct,20.0

@@ -77,8 +77,14 @@ def _is_year_or_date(raw_num: str, whole: str) -> bool:
     return False
 
 
+# Markdown link targets and bare URLs — numbers inside them are addresses,
+# not data claims (e.g. a repo URL containing a username with digits).
+_URL_STRIP = re.compile(r"\]\([^)]*\)|https?://\S+|www\.\S+", re.IGNORECASE)
+
+
 def extract_numbers(text: str) -> list[dict]:
     """Return in-scope numeric tokens with position and signature (ADR-005)."""
+    text = _URL_STRIP.sub("  ", text)
     tokens: list[dict] = []
     for m in _NUM_RE.finditer(text):
         raw = m.group("num")

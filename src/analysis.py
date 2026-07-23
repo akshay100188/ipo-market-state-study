@@ -140,6 +140,31 @@ def aggregate_cut(frames=None) -> tuple[pd.DataFrame, dict]:
     return m, corr
 
 
+def write_summary(labelled, cov, bf, sens, corr) -> pd.DataFrame:
+    """Key derived stats, at the precision the report cites them, so the
+    fabrication lint (§8.2) can trace every number in the prose."""
+    us = labelled[labelled["market"] == "US"]
+    ind = labelled[labelled["market"] == "IN"]
+    rows = {
+        "n_curated": len(labelled),
+        "n_us": len(us),
+        "n_india": len(ind),
+        "n_regimes_used": labelled["regime"].nunique(),
+        "n_fragile": int(sens["fragile"].sum()),
+        "n_robust": int((~sens["fragile"]).sum()),
+        "n_bull_failures": len(bf),
+        "agg_n_years": corr["n_years"],
+        "corr_count_index_ret": corr["corr_count_vs_index_ret"],
+        "corr_meanret_index_ret": corr["corr_meanret_vs_index_ret"],
+        "corr_count_meanvix": corr["corr_count_vs_meanvix"],
+        "n_bull_curated": int((labelled["regime"] == "BULL").sum()),
+        "sensitivity_perturbation_pct": 20,
+    }
+    df = pd.DataFrame([{"metric": k, "value": v} for k, v in rows.items()])
+    df.to_csv(DERIVED / "summary.csv", index=False)
+    return df
+
+
 def run() -> dict:
     frames = load_market_frames()
     labelled = label_curated(frames)
@@ -147,6 +172,7 @@ def run() -> dict:
     bf = bull_failures(labelled)
     sens = sensitivity(frames)
     agg, corr = aggregate_cut(frames)
+    write_summary(labelled, cov, bf, sens, corr)
 
     print("== curated regimes ==")
     print(labelled[["ticker", "market", "regime", "day1_return_pct"]].to_string(index=False))

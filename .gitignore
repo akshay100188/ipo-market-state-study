@@ -26,9 +26,8 @@ Thumbs.db
 # (Phase 2, data/prices/) stay out of git.
 /data/prices/
 
-# Generated figures are reproducible from the pipeline; keep the dir, ignore output.
-/figures/*.png
-!/figures/.gitkeep
+# Figures ARE a deliverable (embedded in the report, rendered on the site) and
+# are committed. They remain fully regenerable via `make figures`.
 
 # local tooling config
 .claude/

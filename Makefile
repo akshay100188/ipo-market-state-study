@@ -60,9 +60,14 @@ analysis:
 figures:
 	$(PY) -m src.figures           # §4/§6 light-theme charts -> figures/*.png
 
-# Full reproduce from the committed cache: data -> analysis -> figures -> gates.
-all: data analysis figures lint
-	@echo "make all: reproduced derived data, figures, and gates from cache"
+# Reproduce from the COMMITTED cache + curated data, no network needed (§8.5):
+# regenerate every derived number + figure, then run the report gates.
+all: analysis figures verify lint
+	@echo "make all: reproduced derived data, figures, and gates from the committed cache"
+
+# Refresh the acquisition layer from live sources (needs network; DB for --refresh
+# and for LIC's official-NSE series). Run this to update, not to reproduce.
+refresh-data: refresh activity seed verify prices
 
 clean:
 	rm -rf __pycache__ src/__pycache__ tests/__pycache__ .pytest_cache
