@@ -1,0 +1,6 @@
+market,regime,n,small_cell
+IN,BULL,3,False
+IN,NEUTRAL,1,True
+IN,TURBULENT,2,True
+US,NEUTRAL,2,True
+US,TURBULENT,1,True

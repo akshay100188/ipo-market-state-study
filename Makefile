@@ -55,13 +55,14 @@ lint:
 	$(PY) -m src.lint_language
 
 analysis:
-	@echo "analysis.py — Phase 3 (not yet built)"
+	$(PY) -m src.analysis          # §4.1-4.5 -> data/derived/*.csv
 
 figures:
-	@echo "figures — Phase 3 (not yet built)"
+	$(PY) -m src.figures           # §4/§6 light-theme charts -> figures/*.png
 
-all: test verify lint analysis figures
-	@echo "make all — full pipeline wires up at Phase 4"
+# Full reproduce from the committed cache: data -> analysis -> figures -> gates.
+all: data analysis figures lint
+	@echo "make all: reproduced derived data, figures, and gates from cache"
 
 clean:
 	rm -rf __pycache__ src/__pycache__ tests/__pycache__ .pytest_cache
